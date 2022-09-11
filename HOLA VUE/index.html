@@ -13,10 +13,11 @@
         const vm = Vue.createApp({
             data() {
                 return {
-                    text:"<p>hola vue</p>"
+                    attr: "src",
+                    img: "https://www.techyon.es/media/news/web-developer-principales-responsabilidades-y-competencias_1650467356_100.jpg"
                 };
             },
-            template: '<div v-html="text"></div>'
+            template: '<img v-bind:[attr]="img" v-bind:alt="img">'
         }).mount("#app");
         console.log(vm);
     </script>
