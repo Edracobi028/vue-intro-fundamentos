@@ -13,13 +13,17 @@
         const vm = Vue.createApp({
             data() {
                 return {
-                    attr: "src",
-                    img: "https://www.techyon.es/media/news/web-developer-principales-responsabilidades-y-competencias_1650467356_100.jpg"
+                    evt:"submit",
+                    counter: 0
                 };
             },
-            template: '<img v-bind:[attr]="img" v-bind:alt="img">'
+            methods: {
+                submit(e) {
+                    this.counter++;
+                }
+            },
+            template: '<form v-on:[evt].prevent="submit"><button>{{ counter }}</button></form>'
         }).mount("#app");
-        console.log(vm);
     </script>
 </body>
 </html>
