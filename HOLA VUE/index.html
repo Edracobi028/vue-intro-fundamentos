@@ -16,21 +16,36 @@
                     items: ["uno","dos","tres"]
                 }
             },
+            methods:{
+                remove(i){
+                    //Filtrar los elementos a excepcion de el que recibimos
+                    const items = this.items.filter((el, index) => index !== i);
+                    this.items = items;//los muestra
+                }
+            },
             
             template: `
                 <ul>
-                    <v-item v-for="item in items" v-bind:text="item"></v-item>
+                    <v-item 
+                        v-for="(item, i) in items" 
+                        v-bind:text="item"
+                        v-on:remove="remove(i)"
+                    />
                 </ul>
             `
         });
 
         app.component("v-item", {
             props: {
-                text:{
-                    default:"Texto vacio"
+                text:String           
+            },
+            methods:{
+                rm(){
+                    //nombrar el evento que estamos creando
+                    this.$emit("remove");
                 }
             },
-            template:`<li>{{ text }}</li>`
+            template:`<li v-on:click="rm">{{ text }}</li>`
         });
 
 
